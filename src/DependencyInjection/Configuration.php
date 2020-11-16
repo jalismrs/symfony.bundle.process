@@ -14,7 +14,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements
     ConfigurationInterface
 {
-    public const CONFIG_ROOT = 'jalismrs_bundle';
+    public const CONFIG_ROOT = 'jalismrs_process';
     
     /**
      * getConfigTreeBuilder

@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    jalismrs_process.process_manager:
+        class: 'Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager'
+        arguments:
+            $cap: '%jalismrs_process.cap%'
+    
+    Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager: '@jalismrs_process.process_manager'

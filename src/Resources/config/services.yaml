@@ -3,9 +3,11 @@ services:
         autowire: true
         autoconfigure: true
     
+    # aliases
+    Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager: '@jalismrs_process.process_manager'
+    
+    # services
     jalismrs_process.process_manager:
-        class: 'Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager'
         arguments:
             $cap: '%jalismrs_process.cap%'
-    
-    Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager: '@jalismrs_process.process_manager'
+        class: 'Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager'

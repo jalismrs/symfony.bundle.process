@@ -13,12 +13,14 @@ coverage reports will be available in `var/coverage`
 ```php
 use Jalismrs\Symfony\Bundle\JalismrsProcessBundle\ProcessManager;
 
-class SomeApiClass {
+class SomeClass {
     private ProcessManager $processManager;
 
-    public function someApiCall(): void {
+    public function someCall1(): void {
         $processes = [
-        
+            new Symfony\Component\Process\Process(
+                [],
+            ),
         ];
     
         foreach($processes as $process) {
@@ -27,7 +29,45 @@ class SomeApiClass {
             );
         }
         
+        // wait for processes to finish
+        $this->processManager->finish();
+    }
+    
+    public function someCall2(): void {
+        $processes = [
+            new Symfony\Component\Process\Process(
+                [],
+            ),
+        ];
+    
+        foreach($processes as $process) {
+            $this->processManager->addProcess(
+                $process
+            );
+        }
         
+        // wait for processes to finish
+        // and clears stored processes
+        $this->processManager->clear();
+    }
+    
+    public function someCall3(): void {
+        $processes = [
+            new Symfony\Component\Process\Process(
+                [],
+            ),
+        ];
+    
+        foreach($processes as $process) {
+            $this->processManager->addProcess(
+                $process
+            );
+        }
+        
+        // wait for processes to finish
+        // and clears stored processes
+        // and returns failed processes
+        $failedProcesses = $this->processManager->getFailedProcesses();
     }
 }
 ```
@@ -35,8 +75,8 @@ class SomeApiClass {
 ## Configuration
 
 ```yaml
-# config/packages/jalismrs_api_throttler.yaml
+# config/packages/jalismrs_process.yaml
 
-jalismrs_api_throttler:
+jalismrs_process:
     cap: 1
 ```
